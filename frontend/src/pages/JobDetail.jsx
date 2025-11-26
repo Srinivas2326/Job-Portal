@@ -10,18 +10,16 @@ export default function JobDetail() {
   const [message, setMessage] = useState("");
   const { user } = useContext(AuthContext);
 
-  // Fetch job details
   useEffect(() => {
     API.get(`/jobs/${id}/`)
       .then((res) => setJob(res.data))
       .catch((err) => console.error("Job detail error:", err));
   }, [id]);
 
-  // Apply to job
   const apply = async () => {
     try {
       await API.post("/jobs/apply/", {
-        job: parseInt(id),          // FIX: ensure ID is sent as number
+        job_id: parseInt(id, 10),   // IMPORTANT: job_id, not job
         cover_letter: coverLetter,
       });
 
@@ -37,14 +35,14 @@ export default function JobDetail() {
   return (
     <div style={{ maxWidth: "800px", padding: "20px" }}>
       <h2>{job.title}</h2>
-      <p><b>{job.company}</b> — {job.location}</p>
+      <p>
+        <b>{job.company}</b> — {job.location}
+      </p>
       <p>{job.description}</p>
 
-      {/* Candidate Apply Section */}
       {user?.role === "candidate" && (
         <div style={{ marginTop: "20px" }}>
           <h3>Apply</h3>
-
           <textarea
             rows={5}
             style={{ width: "100%", padding: "10px" }}
@@ -52,24 +50,21 @@ export default function JobDetail() {
             value={coverLetter}
             onChange={(e) => setCoverLetter(e.target.value)}
           />
-
-          <br /><br />
-
-          <button onClick={apply}>Apply</button>
-
+          <br />
+          <button style={{ marginTop: "10px" }} onClick={apply}>
+            Apply
+          </button>
           {message && (
-            <p style={{ color: message.includes("successfully") ? "green" : "red" }}>
+            <p
+              style={{
+                color: message.includes("successfully") ? "green" : "red",
+                marginTop: "10px",
+              }}
+            >
               {message}
             </p>
           )}
         </div>
-      )}
-
-      {/* Message if logged-in user is not a candidate */}
-      {user && user.role !== "candidate" && (
-        <p style={{ color: "gray", marginTop: "20px" }}>
-          Only candidates can apply to jobs.
-        </p>
       )}
     </div>
   );

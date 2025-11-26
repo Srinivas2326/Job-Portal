@@ -21,10 +21,7 @@ export default function Dashboard() {
     <div>
       <h2>Dashboard ({user.role})</h2>
 
-      {/* --------------------------- */}
-      {/* CANDIDATE DASHBOARD SECTION */}
-      {/* --------------------------- */}
-
+      {/* CANDIDATE DASHBOARD */}
       {user.role === "candidate" && (
         <>
           <h3>Navigation</h3>
@@ -42,10 +39,21 @@ export default function Dashboard() {
             <ul>
               {applications.map((app) => (
                 <li key={app.id}>
-                  <Link to={`/jobs/${app.job.id}`}>
-                    {app.job.title} — {app.job.company}
-                  </Link>
-                  <p><i>Applied on: {new Date(app.created_at).toLocaleDateString()}</i></p>
+                  {app.job ? (
+                    <>
+                      <Link to={`/jobs/${app.job.id}`}>
+                        {app.job.title} — {app.job.company}
+                      </Link>
+                      <p>
+                        <i>
+                          Applied on:{" "}
+                          {new Date(app.created_at).toLocaleDateString()}
+                        </i>
+                      </p>
+                    </>
+                  ) : (
+                    <span>Job unavailable</span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -53,10 +61,7 @@ export default function Dashboard() {
         </>
       )}
 
-      {/* --------------------------- */}
-      {/* RECRUITER DASHBOARD SECTION */}
-      {/* --------------------------- */}
-
+      {/* RECRUITER DASHBOARD */}
       {user.role === "recruiter" && (
         <>
           <h3>Navigation</h3>
