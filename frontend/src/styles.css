@@ -1,6 +1,4 @@
-/* ---------------------------------------------- */
-/* Modern Premium UI for Job Portal Application   */
-/* ---------------------------------------------- */
+
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
@@ -31,9 +29,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ------------------------------------ */
 /* NAVBAR                               */
-/* ------------------------------------ */
 
 .navbar {
   height: 70px;
@@ -76,9 +72,7 @@ body {
   color: var(--text-main);
 }
 
-/* ------------------------------------ */
 /* MAIN CONTENT CENTERING                */
-/* ------------------------------------ */
 
 .main-content {
   display: flex;
@@ -87,9 +81,7 @@ body {
   padding: 20px;
 }
 
-/* ------------------------------------ */
 /* PREMIUM CARD DESIGN                   */
-/* ------------------------------------ */
 
 .card {
   width: 430px;
@@ -125,9 +117,7 @@ body {
   font-weight: 600;
 }
 
-/* ------------------------------------ */
 /* INPUTS                                */
-/* ------------------------------------ */
 
 input,
 select,
@@ -149,9 +139,7 @@ textarea:focus {
   border-color: var(--accent);
 }
 
-/* ------------------------------------ */
 /* BUTTONS                                */
-/* ------------------------------------ */
 
 .btn-primary {
   width: 100%;
@@ -183,9 +171,7 @@ textarea:focus {
   border-color: var(--accent);
 }
 
-/* ------------------------------------ */
 /* TEXT                                  */
-/* ------------------------------------ */
 
 .text-muted {
   text-align: center;
@@ -199,9 +185,7 @@ textarea:focus {
   margin-top: -6px;
 }
 
-/* ------------------------------------ */
 /* LISTS                                 */
-/* ------------------------------------ */
 
 .list-item {
   padding: 14px;
