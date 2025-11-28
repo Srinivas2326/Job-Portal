@@ -2,9 +2,7 @@ from rest_framework import serializers
 from .models import Job, Application
 
 
-# -------------------------
 # JOB SERIALIZER
-# -------------------------
 class JobSerializer(serializers.ModelSerializer):
     created_by_username = serializers.CharField(
         source="created_by.username", read_only=True
@@ -25,9 +23,7 @@ class JobSerializer(serializers.ModelSerializer):
         read_only_fields = ["created_by", "created_at"]
 
 
-# -------------------------
 # APPLICATION SERIALIZER
-# -------------------------
 class ApplicationSerializer(serializers.ModelSerializer):
     candidate_username = serializers.CharField(
         source="candidate.username", read_only=True

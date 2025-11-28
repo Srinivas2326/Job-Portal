@@ -5,9 +5,7 @@ from .models import Job, Application
 from .serializers import JobSerializer, ApplicationSerializer
 
 
-# -----------------------------
 # CUSTOM PERMISSIONS
-# -----------------------------
 
 class IsRecruiter(permissions.BasePermission):
     def has_permission(self, request, view):
@@ -27,9 +25,7 @@ class IsCandidate(permissions.BasePermission):
         )
 
 
-# -----------------------------
 # JOB LIST + CREATE
-# -----------------------------
 
 class JobListCreateView(generics.ListCreateAPIView):
     queryset = Job.objects.all().order_by("-created_at")
@@ -44,18 +40,14 @@ class JobListCreateView(generics.ListCreateAPIView):
         serializer.save(created_by=self.request.user)
 
 
-# -----------------------------
 # JOB DETAIL
-# -----------------------------
 
 class JobDetailView(generics.RetrieveAPIView):
     queryset = Job.objects.all()
     serializer_class = JobSerializer
 
 
-# -----------------------------
 # APPLY TO JOB (Candidate only)
-# -----------------------------
 
 class ApplicationCreateView(generics.CreateAPIView):
     serializer_class = ApplicationSerializer
@@ -72,9 +64,7 @@ class ApplicationCreateView(generics.CreateAPIView):
 
 
 
-# -----------------------------
 # LIST MY APPLICATIONS (Candidate Dashboard)
-# -----------------------------
 
 class MyApplicationsView(generics.ListAPIView):
     serializer_class = ApplicationSerializer
@@ -84,9 +74,7 @@ class MyApplicationsView(generics.ListAPIView):
         return Application.objects.filter(candidate=self.request.user)
 
 
-# -----------------------------
 # RECRUITER: LIST THEIR POSTED JOBS
-# -----------------------------
 
 class RecruiterJobsView(generics.ListAPIView):
     serializer_class = JobSerializer

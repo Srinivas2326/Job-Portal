@@ -3,9 +3,7 @@ from django.contrib.auth.models import User
 from .models import Profile
 
 
-# ---------------------------------------------------------
-# REGISTER SERIALIZER
-# ---------------------------------------------------------
+
 class UserRegisterSerializer(serializers.ModelSerializer):
     role = serializers.ChoiceField(choices=Profile.ROLE_CHOICES)
 
@@ -35,9 +33,7 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         return user
 
 
-# ---------------------------------------------------------
 # USER SERIALIZER (for /me endpoint)
-# ---------------------------------------------------------
 class UserSerializer(serializers.ModelSerializer):
     role = serializers.CharField(source="profile.role", read_only=True)
 

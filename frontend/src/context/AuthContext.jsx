@@ -6,9 +6,7 @@ export const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  // ---------------------------------------------
   // Load user on page refresh (if token exists)
-  // ---------------------------------------------
   useEffect(() => {
     const token = localStorage.getItem("access_token");
 
@@ -22,9 +20,7 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
-  // ---------------------------------------------
   // LOGIN FUNCTION
-  // ---------------------------------------------
   const login = async (username, password) => {
     const tokenResponse = await API.post("/auth/token/", {
       username,
@@ -39,9 +35,7 @@ export function AuthProvider({ children }) {
     setUser(meResponse.data);
   };
 
-  // ---------------------------------------------
   // LOGOUT FUNCTION
-  // ---------------------------------------------
   const logout = () => {
     localStorage.removeItem("access_token");
     setUser(null);
